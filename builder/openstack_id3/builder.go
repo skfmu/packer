@@ -70,14 +70,14 @@ func (b *Builder) Run(ui packer.Ui, hook packer.Hook, cache packer.Cache) (packe
 	if err != nil {
 		return nil, err
 	}
-	networkClient, err := openstack.NewNetworkV2(providerClient, gophercloud.EndpointOpts{
-		Type:         "network",
-		Availability: "public",
-		Region:       b.config.AccessConfig.RawRegion,
-	})
-	if err != nil {
-		return nil, err
-	}
+	// networkClient, err := openstack.NewNetworkV2(providerClient, gophercloud.EndpointOpts{
+	// 	Type:         "network",
+	// 	Availability: "public",
+	// 	Region:       b.config.AccessConfig.RawRegion,
+	// })
+	// if err != nil {
+	// 	return nil, err
+	// }
 
 	// Setup the state bag and initial state for the steps
 	state := new(multistep.BasicStateBag)
@@ -86,7 +86,7 @@ func (b *Builder) Run(ui packer.Ui, hook packer.Hook, cache packer.Cache) (packe
 	state.Put("ui", ui)
 	// Clients
 	state.Put("compute_client", computeClient)
-	state.Put("network_client", networkClient)
+	// state.Put("network_client", networkClient)
 
 	// Build the steps
 	steps := []multistep.Step{
